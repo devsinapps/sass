@@ -1,0 +1,58 @@
+//Make clear float 
+@mixin clearFix{
+	&:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+}
+
+@mixin banner {
+	position: relative;
+	img{
+		width: 100%;
+		height: 600px;
+	}
+	h2{
+		position: absolute;
+		top: 10px;
+	}
+}
+
+//Make Grid With Parameter
+@mixin grid($cols, $mgn){
+	float: left;
+	margin-right: $mgn;
+	margin-bottom: $mgn;
+	width: ((100% - (($cols - 1) * $mgn)) / $cols);
+	&:nth-child(#{$cols}n){
+		margin-right: 0;
+	}
+}
+
+//Make @content
+@mixin mediaQuery($arg){
+	@media screen and (max-width: $arg){
+		//there will be place for the children
+		@content;
+	}
+}
+
+
+//Using if statement
+@mixin mediaQuery2($arg...){
+	//if parameter just 1, so will load this condition
+		//the meaning of ($arg, 1) is, first parameter of argument
+	@if length($arg) == 1 {
+		@media screen and (max-width: nth($arg, 1)){
+			@content;
+		}
+	}
+
+	//if parameter 2, so will load this condition
+	@if length($arg) == 2 {
+		@media screen and (max-width: nth($arg,1)) and (min-width: nth($arg, 2)){
+			@content;
+		}
+	}
+}

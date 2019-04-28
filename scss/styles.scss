@@ -1,0 +1,64 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+
+#main-nav{
+	a{
+		display: inline-block;
+	}
+	ul{
+
+	}
+	li{
+
+	}
+}
+
+.head-banner{
+	@include banner;
+	h2{	
+		font-size: 20px;
+		color: $white;
+		@include mediaQuery2(1000px, 500px){
+			font-size: 17px;
+		}
+	}
+}
+
+.body-banner{
+	ul{
+		@include clearFix;
+		background-color: $redMaroon;
+	}
+	li{
+		float: left;
+		width: (100% / 3);
+		text-align: center;
+		a{
+			padding: 26px;
+			display: block;
+			text-decoration: none;
+			color: $white;
+		}
+		@include mediaQuery(600px){
+			width: 100%;
+		}
+	}
+
+}
+
+.footer-banner{
+	ul{
+		@include clearFix;
+	}
+	li{
+		//first parameter is how much columns in one row, and second parameter is for margin
+		text-align: center;
+		@include grid(6, 2%);
+		//using mediaQuery
+		@include mediaQuery(600px){
+			//if width < 600px, so the grid is changing
+			@include grid(2, 2%);
+		}
+	}
+}
